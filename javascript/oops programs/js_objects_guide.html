@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JavaScript Objects (Ch. 36–48) — Python Mapping</title>
+    <link rel="stylesheet" href="js_objects_guide.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <h1>Objects { } — Chapters 1 to 13</h1>
+            <p>Clear JavaScript explanations mapped to Python so you can learn faster.</p>
+            <nav class="toc">
+                <a href="#ch1">Ch1: Object literals</a>
+                <a href="#ch2">Ch2: Access & methods</a>
+                <a href="#ch3">Ch3: Copy by value/ref</a>
+                <a href="#ch4">Ch4: assign / spread</a>
+                <a href="#ch5">Ch5: Deep clone</a>
+                <a href="#ch6">Ch6: Practice</a>
+                <a href="#ch7">Ch7: keys/values/entries</a>
+                <a href="#ch8">Ch8: Property flags & freeze</a>
+                <a href="#ch9">Ch9: Prototype</a>
+                <a href="#ch10">Ch10: Symbols</a>
+                <a href="#ch11">Ch11: Existence test</a>
+                <a href="#ch12">Ch12: for...in</a>
+                <a href="#ch13">Ch13: Interview Qs</a>
+            </nav>
+        </header>
+
+        <!-- Chapter 1 -->
+        <section id="ch1">
+            <div class="sec-head">
+                <span class="badge">Part 1 — Chapter 1</span>
+                <h2><a class="anchor" href="#ch1">Creating objects using object literals { }, dot access,
+                        add/update/delete</a></h2>
+            </div>
+            <div class="sec-body">
+                <div class="grid">
+                    <div class="kv"><b>Python mapping:</b> Similar to <code>dict</code>, but JS objects can also carry
+                        methods.</div>
+                </div>
+                <pre><code class="language-js">let person = {
+  name: "Shekhar",
+  age: 25
+};
+
+console.log(person.name);   // Shekhar
+person.city = "Hyderabad";  // add
+person.age = 26;            // update
+delete person.city;         // delete
+</code></pre>
+            </div>
+        </section>
+
+        <!-- Chapter 2 -->
+        <section id="ch2">
+            <div class="sec-head">
+                <span class="badge">Part 2 — Chapter 2</span>
+                <h2><a class="anchor" href="#ch2">Square brackets, function vs method, shorthand properties</a></h2>
+            </div>
+            <div class="sec-body">
+                <h3>Access with square brackets</h3>
+                <ul>
+                    <li>Use when key has spaces/special chars or is in a variable.</li>
+                </ul>
+                <pre><code class="language-js">const key = "full name";
+let user = { "full name": "Shekhar Reddy" };
+console.log(user[key]);      // Shekhar Reddy
+</code></pre>
+
+                <h3>Function vs Method</h3>
+                <pre><code class="language-js">function greet(){ console.log("Hello"); } // function
+
+let user2 = {
+  name: "Shekhar",
+  greet: function(){ console.log("Hello " + this.name); } // method (uses this)
+};
+user2.greet();
+</code></pre>
+
+                <h3>Shorthand properties</h3>
+                <pre><code class="language-js">let name = "Shekhar", age = 25;
+let person1 = { name, age }; // same as { name: name, age: age }
+</code></pre>
+            </div>
+        </section>
+
+        <!-- Chapter 3 -->
+        <section id="ch3">
+            <div class="sec-head">
+                <span class="badge">Part 3 — Chapter 3</span>
+                <h2><a class="anchor" href="#ch3">Copy by value vs copy by reference</a></h2>
+            </div>
+            <div class="sec-body">
+                <div class="tip">Primitives (number, string, boolean, null, undefined, bigint, symbol) copy by
+                    <b>value</b>. Objects/arrays copy by <b>reference</b>.
+                </div>
+                <pre><code class="language-js">let a = { x: 1 };
+let b = a;  // reference copy
+b.x = 5;
+console.log(a.x); // 5 (original affected)
+</code></pre>
+            </div>
+        </section>
+
+        <!-- Chapter 4 -->
+        <section id="ch39">
+            <div class="sec-head">
+                <span class="badge">Part 4 — Chapter 4</span>
+                <h2><a class="anchor" href="#ch4">Object.assign() and spread operator</a></h2>
+            </div>
+            <div class="sec-body">
+                <div class="warn">Both are <b>shallow</b> copies (nested objects still shared).</div>
+                <pre><code class="language-js">let base = { a: 1, nest: { b: 2 } };
+
+let copy1 = Object.assign({}, base);
+let copy2 = { ...base };
+
+copy1.nest.b = 9;
+console.log(base.nest.b); // 9 (shared reference!)
+</code></pre>
+            </div>
+        </section>
+
+        <!-- Chapter 5 -->
+        <section id="ch5">
+            <div class="sec-head">
+                <span class="badge">Part 5 — Chapter 5</span>
+                <h2><a class="anchor" href="#ch5">Deep cloning / structuredClone</a></h2>
+            </div>
+            <div class="sec-body">
+                <pre><code class="language-js">let o1 = { a: { b: 2 }, arr: [1,2,3] };
+let o2 = structuredClone(o1);
+o2.a.b = 7;
+o2.arr.push(4);
+
+console.log(o1.a.b);   // 2 (separate)
+console.log(o1.arr);   // [1,2,3] (separate)
+</code></pre>
+                <p class="foot">Python analogy: <code>copy.deepcopy()</code>.</p>
+            </div>
+        </section>
+
+        <!-- Chapter 6 -->
+        <section id="ch6">
+            <div class="sec-head">
+                <span class="badge">Part 6 — Chapter 6</span>
+                <h2><a class="anchor" href="#ch6">Practice checklist</a></h2>
+            </div>
+            <div class="sec-body">
+                <ul>
+                    <li>Create objects; add/update/delete props</li>
+                    <li>Access via dot vs brackets</li>
+                    <li>Shallow vs deep copies</li>
+                    <li>Write a method that uses <code>this</code></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Chapter 7 -->
+        <section id="ch7">
+            <div class="sec-head">
+                <span class="badge">Part 7 — Chapter 7</span>
+                <h2><a class="anchor" href="#ch7">Object.keys(), Object.values(), Object.entries()</a></h2>
+            </div>
+            <div class="sec-body">
+                <pre><code class="language-js">let person = { name: "Shekhar", age: 25 };
+Object.keys(person);   // ["name", "age"]
+Object.values(person); // ["Shekhar", 25]
+Object.entries(person);// [["name","Shekhar"], ["age",25]]
+</code></pre>
+                <p class="foot">Python: <code>dict.keys()</code>, <code>dict.values()</code>, <code>dict.items()</code>
+                </p>
+            </div>
+        </section>
+
+        <!-- Chapter 8 -->
+        <section id="ch8">
+            <div class="sec-head">
+                <span class="badge">Part 8 — Chapter 8</span>
+                <h2><a class="anchor" href="#ch8">Property flags + freeze/seal/preventExtensions</a></h2>
+            </div>
+            <div class="sec-body">
+                <h3>Property flags</h3>
+                <pre><code class="language-js">let obj = { name: "Shekhar" };
+Object.defineProperty(obj, "name", {
+  writable: false,      // can't change value
+  enumerable: true,     // shows up in loops
+  configurable: false   // can't redefine/delete
+});
+obj.name = "Reddy";     // no effect in strict mode throws
+</code></pre>
+
+                <h3>Freeze / Seal / Prevent Extensions</h3>
+                <pre><code class="language-js">let x = { a: 1 };
+Object.freeze(x); // no add/update/delete
+
+let y = { a: 1 };
+Object.seal(y);   // can update existing, no add/delete
+
+let z = { a: 1 };
+Object.preventExtensions(z); // can't add new props
+</code></pre>
+            </div>
+        </section>
+
+        <!-- Chapter 9 -->
+        <section id="ch9">
+            <div class="sec-head">
+                <span class="badge">Part 9 — Chapter 9</span>
+                <h2><a class="anchor" href="#ch9">Prototype & prototypal inheritance</a></h2>
+            </div>
+            <div class="sec-body">
+                <pre><code class="language-js">function Person(name){ this.name = name; }
+Person.prototype.greet = function(){
+  console.log("Hi " + this.name);
+};
+
+const p = new Person("Shekhar");
+p.greet(); // "Hi Shekhar"
+</code></pre>
+                <p class="foot">Python analogy: class inheritance; in JS each object links to a prototype.</p>
+            </div>
+        </section>
+
+        <!-- Chapter 10 -->
+        <section id="ch10">
+            <div class="sec-head">
+                <span class="badge">Part 10 — Chapter 10</span>
+                <h2><a class="anchor" href="#ch10">Symbols as keys</a></h2>
+            </div>
+            <div class="sec-body">
+                <pre><code class="language-js">const id = Symbol("id");
+let user = { [id]: 123, name: "Shekhar" };
+console.log(Object.keys(user)); // ["name"] — symbol key is hidden from keys()
+</code></pre>
+                <p class="foot">Symbols create guaranteed-unique property keys.</p>
+            </div>
+        </section>
+
+        <!-- Chapter 11 -->
+        <section id="ch11">
+            <div class="sec-head">
+                <span class="badge">Part 11 — Chapter 11</span>
+                <h2><a class="anchor" href="#ch11">Property existence tests</a></h2>
+            </div>
+            <div class="sec-body">
+                <pre><code class="language-js">let person = { name: "Shekhar" };
+"name" in person;               // true  (checks prototype chain too)
+person.hasOwnProperty("name");  // true  (own property only)
+</code></pre>
+                <p class="foot">Python: <code>'name' in d</code> for dicts.</p>
+            </div>
+        </section>
+
+        <!-- Chapter 12 -->
+        <section id="ch12">
+            <div class="sec-head">
+                <span class="badge">Part 12 — Chapter 12</span>
+                <h2><a class="anchor" href="#ch12">for...in loop</a></h2>
+            </div>
+            <div class="sec-body">
+                <pre><code class="language-js">const person = { name: "Shekhar", age: 25 };
+for (const key in person) {
+  console.log(key, person[key]);
+}
+// Prefer Object.keys/entries for predictable ordering:
+Object.entries(person).forEach(([k,v]) =&gt; console.log(k, v));
+</code></pre>
+                <p class="foot">Python: <code>for k, v in d.items():</code></p>
+            </div>
+        </section>
+
+        <!-- Chapter 13 -->
+        <section id="ch13">
+            <div class="sec-head">
+                <span class="badge">Part 13 — Chapter 13</span>
+                <h2><a class="anchor" href="#ch13">Interview essentials (Objects)</a></h2>
+            </div>
+            <div class="sec-body">
+                <ul>
+                    <li>Shallow vs deep copy (spread/assign vs <code>structuredClone</code>).</li>
+                    <li><code>this</code> vs Python’s <code>self</code>: <code>this</code> depends on call-site.</li>
+                    <li>Prototype chain lookup vs own props (<code>in</code> vs <code>hasOwnProperty</code>).</li>
+                    <li>When to use brackets vs dot access.</li>
+                    <li>Property flags and <code>freeze</code>/<code>seal</code>.</li>
+                    <li>Why Symbols are not in <code>Object.keys</code>.</li>
+                </ul>
+                <div class="warn">JS Trap: extracting a method loses <code>this</code>.</div>
+                <pre><code class="language-js">class Person {
+  constructor(name){ this.name = name; }
+  greet(){ console.log("Hello, I am", this.name); }
+}
+const p = new Person("Shekhar");
+const f = p.greet;
+f();                 // undefined (this lost)
+f.bind(p)();         // works
+</code></pre>
+            </div>
+        </section>
+
+        <p class="foot">Tip: open DevTools console and paste snippets to experiment.</p>
+    </div>
+</body>
+
+</html>

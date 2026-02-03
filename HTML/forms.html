@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>forms</title>
+    <style>
+        body {
+            background-image: url("media/sh2.jpg");
+        }
+
+        .bg {
+            border: 2px solid black;
+            padding: 100px;
+            background: linear-gradient(to right, orange, green);
+            width: 400px;
+            margin-left: 450px;
+            margin-top: 200px;
+        }
+
+        h1 {
+            margin-left: 500px;
+        }
+
+        /* #selector {
+            background-color: rgb(231, 145, 32);
+            margin-left: 100px;
+        } */
+        a {
+            border: 2px solid black;
+            text-decoration: none;
+            background-color: aqua;
+            margin-left: 100px;
+        }
+
+        a:hover {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>login in </h1>
+    <form class="bg" action="" method="post">
+        <label for="">Email Id :</label>
+        <input type="email" name="email" id="email" value="" placeholder="example@gmail.com" required>
+        <br> <br>
+        <label for="">Password :</label>
+        <input type="password" name="password" id="password" value="" placeholder="enter your password" required
+            minlength="8">
+        <br><br>
+        <a href="">Sign in</a>
+        </a>
+    </form>
+
+</body>
+
+</html>
