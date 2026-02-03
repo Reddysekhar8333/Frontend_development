@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <label for=""> Name :</label>
+        <input type="text" name="name" id="name" />
+        <button type="submit" id="btn">Submit</button>
+    </form>
+    <h2>student Name : <b class="heading"></b></h2>
+</body>
+<script>
+    let studentName = document.getElementById('name'); // getElementById can target only id
+    let heading = document.querySelector('.heading'); // querySelector can target all kind of attributes 
+    // ex:- (.class)(#id)
+    document.querySelector('#btn').onclick = function () {
+        heading.innerText = studentName.value;
+        console.log(studentName.value);
+    };
+</script>
+
+</html>
+
+<!-- onclick -->
+<!-- onMouseover -->
+<!-- onSubmit -->
+<!-- onKeyup -->
+<!-- keydown -->
